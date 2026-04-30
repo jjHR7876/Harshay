@@ -56,10 +56,7 @@ public class Deck
 
     public int Count
     {
-        get
-        {
-            return _cards.Count;
-        }
+        get { return _cards.Count; }
     }
 
     public Deck(int numberOfDecks = 1)
@@ -77,44 +74,4 @@ public class Deck
         }
     }
 
-    public void Shuffle()
-    {
-        List<Card> list = new List<Card>(_cards);
-        Random rng = new Random();
-
-        for (int i = list.Count - 1; i > 0; i--)
-        {
-            int j = rng.Next(i + 1);
-
-            Card temp = list[i];
-            list[i] = list[j];
-            list[j] = temp;
-        }
-
-        _cards = new Queue<Card>(list);
-    }
-
-    public Card Deal()
-    {
-        if (_cards.Count > 0)
-        {
-            return _cards.Dequeue();
-        }
-        else
-        {
-            throw new InvalidOperationException("Deck is empty.");
-        }
-    }
-
-    public Card Peek()
-    {
-        if (_cards.Count > 0)
-        {
-            return _cards.Peek();
-        }
-        else
-        {
-            throw new InvalidOperationException("Deck is empty.");
-        }
-    }
 }
