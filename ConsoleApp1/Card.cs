@@ -137,6 +137,7 @@ public class Hand
                 aceCount++;
             }
         }
+        //meow
 
         while (total > 21 && aceCount > 0)
         {
