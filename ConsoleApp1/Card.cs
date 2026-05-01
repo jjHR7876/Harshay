@@ -74,4 +74,183 @@ public class Deck
         }
     }
 
+
+    public void shuffle()
+    {
+        Card[] shuffle = new Card[_cards.Count];
+        int[] randomizer = new int[_cards.Count];
+        int x = 0;
+        
+        for (int i = 0; i < _cards.Count; i++)
+        {
+            while (randomizer.Contains(x))
+            {
+                x = rnd.Next(0, _cards.Count);
+            }
+            randomizer[i] = x;
+            shuffle[x] = _cards.Dequeue();
+        }
+        for (int i = 0; i < _cards.Count; i++)
+        {
+       
+            _cards.Enqueue(shuffle[i]);
+        }
+        
+    }
+    public Card Deal()
+    {
+     
+            x =  _cards.Dequeue();
+            _cards.Enqueue(x);
+            return x;
+
+    }
+
+    public Card Peek()
+    {
+            return _cards.Peek();
+    }
+    
 }
+
+
+public class Hand
+{
+    private List<Card> cards = new List<Card>();
+
+    public void AddCard(Card card)
+    {
+        cards.Add(card);
+    }
+
+    public int GetValue()
+    {
+        int total = 0;
+        int aceCount = 0;
+
+        foreach (Card card in cards)
+        {
+            total += card.BlackjackValue;
+
+            if (card.Rank == Rank.Ace)
+            {
+                aceCount++;
+            }
+        }
+
+        while (total > 21 && aceCount > 0)
+        {
+            total -= 10;
+            aceCount--;
+        }
+
+        return total;
+    }
+
+    public bool IsBust()
+    {
+        return GetValue() > 21;
+    }
+
+    public bool HasBlackjack()
+    {
+        return cards.Count == 2 && GetValue() == 21;
+    }
+
+    public void ShowHand()
+    {
+        foreach (Card card in cards)
+        {
+            Console.WriteLine(card);
+        }
+
+        Console.WriteLine("Total: " + GetValue());
+    }
+
+    public void ShowDealerFirstCard()
+    {
+        if (cards.Count > 0)
+        {
+            Console.WriteLine(cards[0]);
+            Console.WriteLine("Second card is hidden.");
+        }
+    }
+
+    public void Clear()
+    {
+        cards.Clear();
+    }
+}
+
+public class Player
+{
+    public string Name { get; private set; }
+    public Hand Hand { get; private set; }
+
+    public Player(string name)
+    {
+        Name = name;
+        Hand = new Hand();
+    }
+
+    public void Hit(Deck deck)
+    {
+        Card card = deck.Deal();
+        Hand.AddCard(card);
+        Console.WriteLine(Name + " drew: " + card);
+    }
+
+    public void ShowHand()
+    {
+        Console.WriteLine(Name + "'s hand:");
+        Hand.ShowHand();
+    }
+
+    public void ClearHand()
+    {
+        Hand.Clear();
+    }
+}
+
+public class Dealer
+{
+    public Hand Hand { get; private set; }
+
+    public Dealer()
+    {
+        Hand = new Hand();
+    }
+
+    public void Hit(Deck deck)
+    {
+        Card card = deck.Deal();
+        Hand.AddCard(card);
+        Console.WriteLine("Dealer drew: " + card);
+    }
+
+    public void DealerTurn(Deck deck)
+    {
+        while (Hand.GetValue() < 17)
+        {
+            Hit(deck);
+        }
+    }
+
+    public void ShowHand()
+    {
+        Console.WriteLine("Dealer's hand:");
+        Hand.ShowHand();
+    }
+
+    public void ShowFirstCard()
+    {
+        Console.WriteLine("Dealer's hand:");
+        Hand.ShowDealerFirstCard();
+    }
+
+    public void ClearHand()
+    {
+        Hand.Clear();
+    }
+}
+
