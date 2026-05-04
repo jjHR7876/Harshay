@@ -242,6 +242,7 @@ public class Dealer
     {
         Console.WriteLine("Dealer's hand:");
         Hand.ShowHand();
+        
     }
 
     public void ShowFirstCard()
