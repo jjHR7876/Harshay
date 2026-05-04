@@ -52,6 +52,8 @@ public class Card
 
 public class Deck
 {
+    private  Random rnd = new Random();
+
     private Queue<Card> _cards = new Queue<Card>();
 
     public int Count
@@ -80,7 +82,6 @@ public class Deck
         Card[] shuffle = new Card[_cards.Count];
         int[] randomizer = new int[_cards.Count];
         int x = 0;
-        
         for (int i = 0; i < _cards.Count; i++)
         {
             while (randomizer.Contains(x))
@@ -100,7 +101,7 @@ public class Deck
     public Card Deal()
     {
      
-            x =  _cards.Dequeue();
+           Card x =  _cards.Dequeue();
             _cards.Enqueue(x);
             return x;
 
