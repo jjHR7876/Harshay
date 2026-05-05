@@ -79,24 +79,28 @@ public class Deck
 
     public void shuffle()
     {
-        Card[] shuffle = new Card[_cards.Count];
-        int[] randomizer = new int[_cards.Count];
-        int x = 0;
-        for (int i = 0; i < _cards.Count; i++)
+        // Step 1: move all cards out of the queue into an array
+        int totalCards = _cards.Count; // save the count BEFORE we dequeue anything
+        Card[] shuffled = new Card[totalCards];
+
+        for (int i = 0; i < totalCards; i++)
         {
-            while (randomizer.Contains(x))
-            {
-                x = rnd.Next(0, _cards.Count);
-            }
-            randomizer[i] = x;
-            shuffle[x] = _cards.Dequeue();
+            shuffled[i] = _cards.Dequeue();
         }
-        for (int i = 0; i < _cards.Count; i++)
+
+        for (int i = totalCards - 1; i > 0; i--)
         {
-       
-            _cards.Enqueue(shuffle[i]);
+            int j = rnd.Next(0, i + 1);
+            Card temp = shuffled[i];
+            shuffled[i] = shuffled[j];
+            shuffled[j] = temp;
         }
-        
+
+        // Step 3: put all cards back into the queue
+        for (int i = 0; i < totalCards; i++) // uses totalCards NOT _cards.Count
+        {
+            _cards.Enqueue(shuffled[i]);
+        }
     }
     public Card Deal()
     {
@@ -184,35 +188,7 @@ public class Hand
     }
 }
 
-public class Player
-{
-    public string Name { get; private set; }
-    public Hand Hand { get; private set; }
 
-    public Player(string name)
-    {
-        Name = name;
-        Hand = new Hand();
-    }
-
-    public void Hit(Deck deck)
-    {
-        Card card = deck.Deal();
-        Hand.AddCard(card);
-        Console.WriteLine(Name + " drew: " + card);
-    }
-
-    public void ShowHand()
-    {
-        Console.WriteLine(Name + "'s hand:");
-        Hand.ShowHand();
-    }
-
-    public void ClearHand()
-    {
-        Hand.Clear();
-    }
-}
 
 public class Dealer
 {
@@ -256,4 +232,3 @@ public class Dealer
         Hand.Clear();
     }
 }
-
