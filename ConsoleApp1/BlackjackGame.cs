@@ -102,7 +102,7 @@ public class BlackjackGame
                     break;
                 }
 
-                // Ask trivia before each action
+                Thread.Sleep(5000); 
                 Console.WriteLine("\nAnswer a trivia question to take your action!");
                 bool triviaResult = trivia.AskQuestion();
 
@@ -135,7 +135,6 @@ public class BlackjackGame
                 }
             }
 
-            // --- DEALER TURN ---
             if (player.Hand.IsBust() == false)
             {
                 Console.WriteLine("\nDealer's turn:");

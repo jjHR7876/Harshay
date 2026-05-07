@@ -6,21 +6,19 @@ public class Player
     public Hand Hand { get; private set; }
     public int Balance { get; set; }
 
-    // We store the time the player started so we can track 5 minutes
     private DateTime startTime;
-    private int timeLimitSeconds = 300; // 5 minutes = 300 seconds
+    private int timeLimitSeconds = 500; 
 
     public Player(string name)
     {
         Name = name;
         Hand = new Hand();
         Balance = 0;
-        startTime = DateTime.Now; // start the timer when the player is created
+        startTime = DateTime.Now; 
     }
 
     public bool IsTimeUp()
     {
-        // Get how many seconds have passed since the player started
         double secondsPassed = (DateTime.Now - startTime).TotalSeconds;
         return secondsPassed >= timeLimitSeconds;
     }

@@ -90,7 +90,6 @@ public class RouletteGame
             bool isHigh = (result >= 19 && result <= 36);
 
             Console.WriteLine("\nThe wheel spins...");
-            Console.WriteLine("Result: " + result + " (" + GetColor(result, isRed) + ")");
 
             bool won = false;
             int winnings = 0;
@@ -160,6 +159,7 @@ public class RouletteGame
                 Console.WriteLine("Invalid bet type.");
                 continue;
             }
+            Console.WriteLine("Result: " + result + " (" + GetColor(result, isRed) + ")");
 
             if (won)
             {

@@ -79,8 +79,7 @@ public class Deck
 
     public void shuffle()
     {
-        // Step 1: move all cards out of the queue into an array
-        int totalCards = _cards.Count; // save the count BEFORE we dequeue anything
+        int totalCards = _cards.Count; 
         Card[] shuffled = new Card[totalCards];
 
         for (int i = 0; i < totalCards; i++)
@@ -96,8 +95,8 @@ public class Deck
             shuffled[j] = temp;
         }
 
-        // Step 3: put all cards back into the queue
-        for (int i = 0; i < totalCards; i++) // uses totalCards NOT _cards.Count
+
+        for (int i = 0; i < totalCards; i++) 
         {
             _cards.Enqueue(shuffled[i]);
         }
@@ -142,7 +141,6 @@ public class Hand
                 aceCount++;
             }
         }
-        //meow
 
         while (total > 21 && aceCount > 0)
         {
