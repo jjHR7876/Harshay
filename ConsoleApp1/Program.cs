@@ -73,7 +73,6 @@ class Program
             }
         }
 
-        // Save score to leaderboard when done
         leaderboard.AddEntry(player.Name, player.Balance);
         leaderboard.Save();
 
