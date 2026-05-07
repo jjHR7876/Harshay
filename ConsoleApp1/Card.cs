@@ -139,6 +139,7 @@ public class Hand
             if (card.Rank == Rank.Ace)
             {
                 aceCount++;
+                
             }
         }
 

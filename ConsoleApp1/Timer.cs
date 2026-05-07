@@ -17,6 +17,7 @@ public class GameTimer
         
         _minuteTimer.AutoReset = true;
         _minuteTimer.Enabled = true;
+        
     }
 
     private static void OnMinuteEvent(Object source, ElapsedEventArgs e)

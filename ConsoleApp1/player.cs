@@ -14,6 +14,15 @@ public class Player
         Name = name;
         Hand = new Hand();
         Balance = 0;
+
+        Console.Write("How long do you want to play for (enter in seconds): ");
+        string? choice = Console.ReadLine();
+
+        if (int.TryParse(choice, out int x)) 
+        {
+            timeLimitSeconds = x;
+        }
+
         startTime = DateTime.Now; 
     }
 
