@@ -114,12 +114,12 @@ public class RouletteGame
                 if (colorChoice == "r" && isRed)
                 {
                     won = true;
-                    winnings = bet * 2;
+                    winnings = bet ;
                 }
                 else if (colorChoice == "b" && isBlack)
                 {
                     won = true;
-                    winnings = bet * 2;
+                    winnings = bet;
                 }
             }
             else if (betType == "3")
@@ -130,12 +130,12 @@ public class RouletteGame
                 if (oeChoice == "o" && isOdd)
                 {
                     won = true;
-                    winnings = bet * 2;
+                    winnings = bet;
                 }
                 else if (oeChoice == "e" && isEven)
                 {
                     won = true;
-                    winnings = bet * 2;
+                    winnings = bet ;
                 }
             }
             else if (betType == "4")
@@ -146,12 +146,12 @@ public class RouletteGame
                 if (lhChoice == "l" && isLow)
                 {
                     won = true;
-                    winnings = bet * 2;
+                    winnings = bet ;
                 }
                 else if (lhChoice == "h" && isHigh)
                 {
                     won = true;
-                    winnings = bet * 2;
+                    winnings = bet ;
                 }
             }
             else

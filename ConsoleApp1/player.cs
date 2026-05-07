@@ -7,7 +7,7 @@ public class Player
     public int Balance { get; set; }
 
     private DateTime startTime;
-    private int timeLimitSeconds = 500; 
+    private int timeLimitSeconds = 300; 
 
     public Player(string name)
     {
